@@ -1,13 +1,9 @@
-#require "simple_poker"
-RSpec.describe "initial deck" do 
-  let(:deck) { [] }
+require "simple_poker"
 
-  before "tests" do
-    52.times { deck.push(0) }
-  end
+RSpec.describe create_deck do 
 
   it "contains 52 cards" do
-    expect(deck.length).to eq 52
+    expect(subject.length).to eq 52
   end
 
 end
