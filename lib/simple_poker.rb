@@ -11,7 +11,8 @@ def create_deck
 end
 
 def get_random_card
-  create_deck[rand(52)]
+  card = @shuffled_deck[rand(@shuffled_deck.length)]
+  @shuffled_deck.delete_at(card)
 end
 
 # letters = ("a".."z").to_a
@@ -81,22 +82,66 @@ end
 
 #  deal to 5
 def deal(players)
+raise "players must be greater than 2" if players < 2
 table = []
 players.times { table << []}
-shuffled_deck = cuts(create_deck)
+@shuffled_deck = cuts(create_deck)
 i = 0
 until i == 5
-table.each { |player| player << shuffled_deck.shift; shuffled_deck = shuffled_deck[1..-1] }
+table.each { |player| player << @shuffled_deck.shift }
 i += 1
 end
-table.each.with_index {|i, j| puts "player #{j + 1}'s hand:  #{i}"}
+table
+# table.each.with_index {|i, j| puts "player #{j + 1}'s hand:  #{i}"}
 end
 
-deal(5)
+test_game = deal(4)
 
+# Create deck
+# Ask user shuffle option
+# Shaffle deck
+# Deal cards
+# Update deck
+# Ask each player how many cards they want to change
+# If they want to change at least 1 card:
+# Display the cards with indexes
+# Ask the user the index or indexes
+# Replace cards if requested (update table)
+# Update deck
 
+def update_deck(deck, table)
+  deck -= table.flatten
+end
 
+def change_cards(table)
+  table.each_with_index do |hand, i|
+    print hand, "\n"
+    puts "How many cards do you want to change?"
+    number_of_cards = gets.chomp.to_i
+    if number_of_cards != 0
+      show_hand(table, i)
+      puts "Which cards do you want to change? Type the indexes and press enter."
+      indexes = gets.chomp.chars.map(&:to_i)
+      cards_to_remove = []
+      indexes.each { |index| 
+        cards_to_remove << table[i][index - 1]
+      }
+      hand -= cards_to_remove
+      # cards are discarded, so not added to the deck
+      hand = deal_new_cards(number_of_cards, table, hand)
+      print hand, "\n\n\nDONE.\n"
+    end
+  end
+end
 
+def deal_new_cards(num, table, hand)
+  current_deck = update_deck(@shuffled_deck,table)
+  num.times { hand << current_deck[rand(current_deck.length)] }
+  hand
+end
 
+def show_hand(table, player)
 
+end
 
+change_cards(test_game)
