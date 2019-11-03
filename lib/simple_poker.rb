@@ -14,7 +14,7 @@ def get_random_card
   create_deck[rand(52)]
 end
 
-letters = ("a".."z").to_a
+# letters = ("a".."z").to_a
 def random_shuffle(arr)
   
   shuffled = []
@@ -23,7 +23,7 @@ def random_shuffle(arr)
     shuffled << arr[ind]
     arr.delete_at(ind)
   end
-  shuffled.each { |i| print i, "\n" }
+  shuffled
 end
 
 # puts shuffled
@@ -46,11 +46,7 @@ def multi_riffle(arr)
   4.times { riffle(arr) }
 end
 
-# print letters2, "\n"
-# arr = riffle(letters2)
-# for i in 1..15
-#   arr = riffle(arr)
-# end
+
 
 def cuts(arr)
   start = 0
@@ -60,18 +56,47 @@ def cuts(arr)
     shuffled_arr.unshift(arr[start .. chunk])
     start = chunk + 1
   end
-  shuffled_arr.reject { |i| i == [] || i.nil? }
+  random_shuffle(shuffled_arr.reject { |i| i == [] || i.nil? }).flatten
 end
 
-cut_deck = cuts(create_deck)
-i = 1
-while true
-  i += 1
-  if cuts(create_deck).include?([])
-    print cuts(create_deck).flatten, "\n\n  #{i} times"
-    break
-  end
-end
+# cut_deck = cuts(create_deck)
+# i = 1
+# while true
+#   i += 1
+#   if cuts(create_deck).include?([])
+#     print cuts(create_deck).flatten, "\n\n  #{i} times"
+#     break
+#   end
+# end
 
 # random_shuffle(cut_deck)
 # test
+
+# print letters2, "\n"
+# arr = riffle(letters2)
+# for i in 1..15
+#   arr = riffle(create_deck)
+#   print arr
+# end
+
+#  deal to 5
+def deal(players)
+table = []
+players.times { table << []}
+shuffled_deck = cuts(create_deck)
+i = 0
+until i == 5
+table.each { |player| player << shuffled_deck.shift; shuffled_deck = shuffled_deck[1..-1] }
+i += 1
+end
+table.each.with_index {|i, j| puts "player #{j + 1}'s hand:  #{i}"}
+end
+
+deal(5)
+
+
+
+
+
+
+
