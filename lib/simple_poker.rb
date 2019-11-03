@@ -50,9 +50,15 @@ end
 # end
 
 def cuts(arr)
-  # it needs to 
+  start = 0
+  shuffled_arr = []
+  while shuffled_arr.length != 52
+    chunk = rand(6) + start
+    shuffled_arr.unshift(arr[start .. chunk])
+    start = chunk + 1
+  end
+  shuffled_arr.reject(&:nil?)
 end
 
-cuts(letters2)
-
-(1..52).each { |num| puts num if 52 % num == 0}
+cuts(create_deck)
+# test

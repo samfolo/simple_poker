@@ -20,6 +20,18 @@ RSpec.describe get_random_card do
 
 end
 
+RSpec.describe cuts(create_deck) do 
+
+  it "returns an array" do
+    expect(subject).to be_an_instance_of(Array)
+  end
+
+  it "should return an array shorter than 52" do
+    expect(subject.length).to be < 52
+  end
+
+end
+
 # cards = {Hearts: [], Clubs: [], Spades: [], Diamonds: []}
 
 # cards.each { |k, v|
