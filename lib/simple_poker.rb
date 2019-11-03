@@ -50,7 +50,9 @@ end
 # end
 
 def cuts(arr)
-  
+  # it needs to 
 end
 
 cuts(letters2)
+
+(1..52).each { |num| puts num if 52 % num == 0}
