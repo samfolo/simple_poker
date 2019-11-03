@@ -61,3 +61,4 @@ def cuts(arr)
 end
 
 cuts(create_deck)
+# test
