@@ -168,8 +168,39 @@ end
 # Ask the user the index or indexes
 # Replace cards if requested (update table)
 # Update deck
-test_game = deal(2)
-change_cards(test_game)
+# test_game = deal(2)
+# change_cards(test_game)
 # SAMPLE DATA
 # letters = ("a".."z").to_a
 # letters2 = (1..52).to_a
+# numeric_val = {
+#   "2": 1, 
+#   "3": 2, 
+#   "4": 3, 
+#   "5": 4, 
+#   "6": 5, 
+#   "7": 6, 
+#   "8": 7, 
+#   "9": 8, 
+#   "10": 9, 
+#   "Jack": 10, 
+#   "Queen": 11, 
+#   "King": 12, 
+#   "Ace": 13
+# }
+
+# cards = create_deck
+# print cards
+# cards.each{ |card|
+#   arr = card.split(" ")
+#   puts arr[0]
+# }
+deck = create_deck
+print deck
+puts "\n\n"
+
+8.times {
+  deck = riffle(deck)
+  print deck
+  puts "\n\n"
+}
