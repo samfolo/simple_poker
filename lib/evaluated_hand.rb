@@ -15,4 +15,8 @@ class EvaluatedHand
   def get_face_val
     @hand.map {|card| card.split[0]}
   end
+
+  def three_of_a_kind?
+    "3 of a Kind"
+  end
 end
