@@ -25,15 +25,15 @@ describe EvaluatedHand do
     end
   end
 
-  # describe "#four_of_a_kind?" do
-  #   it "should return '4 of a Kind' when a hand with 4 cards with the same face value is passed" do
-  #     hand = EvaluatedHand.new(["10 of D", "10 of C", "10 of S", "10 of H", "7 of C"])
-  #     expect(hand.three_of_a_kind?).to eq "4 of a Kind"
-  #   end
+  describe "#four_of_a_kind?" do
+    it "should return '4 of a Kind' when a hand with 4 cards with the same face value is passed" do
+      hand = EvaluatedHand.new(["10 of D", "10 of C", "10 of S", "10 of H", "7 of C"])
+      expect(hand.four_of_a_kind?).to eq "4 of a Kind"
+    end
 
-  #   it "should return 'nil' when a hand with no matching face values is passed" do
-  #     hand = EvaluatedHand.new(["10 of D", "9 of H", "3 of S", "Queen of D", "5 of C"])
-  #     expect(hand.three_of_a_kind?).to eq nil
-  #   end
-  # end
+    it "should return 'nil' when a hand with no matching face values is passed" do
+      hand = EvaluatedHand.new(["10 of D", "9 of H", "3 of S", "Queen of D", "5 of C"])
+      expect(hand.four_of_a_kind?).to eq nil
+    end
+  end
 end

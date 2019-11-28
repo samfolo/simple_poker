@@ -197,10 +197,10 @@ end
 # }
 deck = create_deck
 print deck
-puts "\n\n"
+# puts "\n\n"
 
-8.times {
-  deck = riffle(deck)
-  print deck
-  puts "\n\n"
-}
+# 8.times {
+#   deck = riffle(deck)
+#   print deck
+#   puts "\n\n"
+# }
