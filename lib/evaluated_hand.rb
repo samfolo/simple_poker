@@ -17,19 +17,20 @@ class EvaluatedHand
   end
 
   def three_of_a_kind?
-    face_hand = get_face_val
-    face_hand.each { |face_card|
-    @result << "3 of a Kind" if face_hand.count(face_card) == 3
-  }
+  count_cards("3 of a Kind", 3)
   @result[0]
   end
 
   def four_of_a_kind?
+  count_cards("4 of a Kind", 4)
+  @result[0]
+  end
+
+  def count_cards(result, amount)
     face_hand = get_face_val
     face_hand.each { |face_card|
-    @result << "4 of a Kind" if face_hand.count(face_card) == 4
+    @result << result if face_hand.count(face_card) == amount
   }
-  @result[0]
   end
 
   
