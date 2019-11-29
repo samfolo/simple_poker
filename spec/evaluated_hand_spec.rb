@@ -89,4 +89,23 @@ describe EvaluatedHand do
       expect(hand.flush?).to eq nil
     end
   end
+
+  describe "#flush?" do
+    context "when passed a hand with 5 cards in an ascending order" do
+      it "should return 'Straight' when the cards 5 to 9 are passed" do
+        hand = EvaluatedHand.new(["9 of C", "5 of D", "8 of H", "7 of D", "6 of S"])
+        expect(hand.straight?).to eq "Straight"
+      end
+
+      it "should return 'Straight' when the cards 2 to 6 are passed" do
+        hand = EvaluatedHand.new(["2 of C", "3 of S", "4 of C", "5 of H", "6 of D"])
+        expect(hand.straight?).to eq "Straight"
+      end
+    end
+
+    it "should return 'nil' when a hand with no matching face values is passed" do
+      hand = EvaluatedHand.new(["10 of D", "9 of D", "3 of S", "Queen of D", "5 of D"])
+      expect(hand.straight?).to eq nil
+    end
+  end
 end

@@ -1,4 +1,11 @@
 class EvaluatedHand
+
+  NUMERIC_VAL = { "2" => 1, "3" => 2, "4" => 3, "5" => 4, 
+  "6" => 5, "7" => 6, "8" => 7, "9" => 8, 
+  "10" => 9, "Jack" => 10, "Queen" => 11, 
+  "King" => 12, "Ace" => 13
+  }
+
   def initialize(hand)
     @hand = hand
     @result = []
@@ -31,10 +38,18 @@ class EvaluatedHand
 
   def flush?
     suit_hand = get_suit_val
-    @suits.each {|suit|
-      return "Flush" if suit_hand.count(suit) == 5
+    "Flush" if suit_hand.uniq.length == 1
+  end
+
+  def straight?
+    numeric_hand = get_numeric_hand
+    i = 0
+    pre_card = ""
+    numeric_hand.each { |card|
+      (i += 1 if pre_card == card.to_i - 1)  if pre_card != ""
+      pre_card = card
     }
-    nil
+    "Straight" if i == 4
   end
 
   private
@@ -47,10 +62,24 @@ class EvaluatedHand
     @hand.map {|card| card.split[-1]}
   end
 
+  def get_numeric_val(card)
+    NUMERIC_VAL.each {|key, value|
+      return value if key == card
+    }
+  end
+
+  def get_numeric_hand
+    numeric_hand = []
+    get_face_val.each { |face_card|
+      numeric_hand << get_numeric_val(face_card)
+    }
+    numeric_hand.sort!
+  end
+
   def count_cards(result, amount)
     face_hand = get_face_val
     face_hand.each { |face_card|
-    @result << result if face_hand.count(face_card) == amount
+      @result << result if face_hand.count(face_card) == amount
     }
   end
 
