@@ -2,6 +2,7 @@ class EvaluatedHand
   def initialize(hand)
     @hand = hand
     @result = []
+    @suits = ["S", "D", "C", "H"]
   end
 
   def pair?
@@ -30,7 +31,10 @@ class EvaluatedHand
 
   def flush?
     suit_hand = get_suit_val
-    "Flush" if suit_hand.count("D") == 5
+    @suits.each {|suit|
+      return "Flush" if suit_hand.count(suit) == 5
+    }
+    nil
   end
 
   private

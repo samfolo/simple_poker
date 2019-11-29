@@ -68,10 +68,20 @@ describe EvaluatedHand do
         expect(hand.flush?).to eq "Flush"
       end
 
-      # it "should return 'Flush' when all suits are 'C'" do
-      #   hand = EvaluatedHand.new(["10 of C", "5 of C", "8 of C", "7 of C", "Ace of C"])
-      #   expect(hand.flush?).to eq "Flush"
-      # end
+      it "should return 'Flush' when all suits are 'C'" do
+        hand = EvaluatedHand.new(["10 of C", "5 of C", "8 of C", "7 of C", "Ace of C"])
+        expect(hand.flush?).to eq "Flush"
+      end
+
+      it "should return 'Flush' when all suits are 'H'" do
+        hand = EvaluatedHand.new(["10 of H", "5 of H", "8 of H", "7 of H", "Ace of H"])
+        expect(hand.flush?).to eq "Flush"
+      end
+
+      it "should return 'Flush' when all suits are 'S'" do
+        hand = EvaluatedHand.new(["10 of S", "5 of S", "8 of S", "7 of S", "Ace of S"])
+        expect(hand.flush?).to eq "Flush"
+      end
     end
 
     it "should return 'nil' when a hand with no matching face values is passed" do
