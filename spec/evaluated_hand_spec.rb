@@ -61,15 +61,22 @@ describe EvaluatedHand do
     end
   end
 
-  # describe "#flush?" do
-  #   it "should return 'Flush' when a hand with 2 sets of 2 cards with the same face value is passed" do
-  #     hand = EvaluatedHand.new(["10 of D", "5 of D", "8 of D", "7 of D", "Ace of D"])
-  #     expect(hand.flush?).to eq "Flush"
-  #   end
+  describe "#flush?" do
+    context "when passed a hand with all the same suit values" do
+      it "should return 'Flush' when all suits are 'D'" do
+        hand = EvaluatedHand.new(["10 of D", "5 of D", "8 of D", "7 of D", "Ace of D"])
+        expect(hand.flush?).to eq "Flush"
+      end
 
-  #   it "should return 'nil' when a hand with no matching face values is passed" do
-  #     hand = EvaluatedHand.new(["10 of D", "9 of H", "3 of S", "Queen of D", "5 of C"])
-  #     expect(hand.flush?).to eq nil
-  #   end
-  # end
+      # it "should return 'Flush' when all suits are 'C'" do
+      #   hand = EvaluatedHand.new(["10 of C", "5 of C", "8 of C", "7 of C", "Ace of C"])
+      #   expect(hand.flush?).to eq "Flush"
+      # end
+    end
+
+    it "should return 'nil' when a hand with no matching face values is passed" do
+      hand = EvaluatedHand.new(["10 of D", "9 of D", "3 of S", "Queen of D", "5 of D"])
+      expect(hand.flush?).to eq nil
+    end
+  end
 end

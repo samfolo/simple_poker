@@ -28,9 +28,10 @@ class EvaluatedHand
     "Two Pair" if @result.count("Pair") == 2
   end
 
-  # def flush?
-
-  # end
+  def flush?
+    suit_hand = get_suit_val
+    "Flush" if suit_hand.count("D") == 5
+  end
 
   private
 
@@ -38,9 +39,9 @@ class EvaluatedHand
     @hand.map {|card| card.split[0]}
   end
 
-  # def get_suit_val
-  #   @hand.map {|card| card.split[0]}
-  # end
+  def get_suit_val
+    @hand.map {|card| card.split[-1]}
+  end
 
   def count_cards(result, amount)
     face_hand = get_face_val
