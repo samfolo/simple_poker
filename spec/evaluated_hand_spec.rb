@@ -36,4 +36,40 @@ describe EvaluatedHand do
       expect(hand.four_of_a_kind?).to eq nil
     end
   end
+
+  describe "#full_house?" do
+    it "should return 'Full House' when a hand with 3 cards with the same face value and 2 cards with the same face value is passed" do
+      hand = EvaluatedHand.new(["10 of D", "10 of C", "10 of S", "7 of H", "7 of C"])
+      expect(hand.full_house?).to eq "Full House"
+    end
+
+    it "should return 'nil' when a hand with no matching face values is passed" do
+      hand = EvaluatedHand.new(["10 of D", "9 of H", "3 of S", "Queen of D", "5 of C"])
+      expect(hand.full_house?).to eq nil
+    end
+  end
+
+  describe "#two_pair?" do
+    it "should return 'Two Pair' when a hand with 2 sets of 2 cards with the same face value is passed" do
+      hand = EvaluatedHand.new(["10 of D", "10 of C", "8 of S", "7 of H", "7 of C"])
+      expect(hand.two_pair?).to eq "Two Pair"
+    end
+
+    it "should return 'nil' when a hand with no matching face values is passed" do
+      hand = EvaluatedHand.new(["10 of D", "9 of H", "3 of S", "Queen of D", "5 of C"])
+      expect(hand.two_pair?).to eq nil
+    end
+  end
+
+  # describe "#flush?" do
+  #   it "should return 'Flush' when a hand with 2 sets of 2 cards with the same face value is passed" do
+  #     hand = EvaluatedHand.new(["10 of D", "5 of D", "8 of D", "7 of D", "Ace of D"])
+  #     expect(hand.flush?).to eq "Flush"
+  #   end
+
+  #   it "should return 'nil' when a hand with no matching face values is passed" do
+  #     hand = EvaluatedHand.new(["10 of D", "9 of H", "3 of S", "Queen of D", "5 of C"])
+  #     expect(hand.flush?).to eq nil
+  #   end
+  # end
 end
