@@ -133,5 +133,10 @@ describe EvaluatedHand do
       hand = EvaluatedHand.new(["10 of C", "Jack of C", "Queen of C", "King of C", "Ace of C"])
       expect(hand.royal_flush?).to eq "Royal Flush"
     end
+
+    it "should return 'nil' when a hand with no matching face values is passed" do
+      hand = EvaluatedHand.new(["10 of D", "9 of D", "3 of S", "Queen of D", "5 of D"])
+      expect(hand.royal_flush?).to eq nil
+    end
   end
 end

@@ -57,7 +57,7 @@ class EvaluatedHand
   end
 
   def royal_flush?
-    "Royal Flush"
+    "Royal Flush" if straight_flush? && get_numeric_hand[0] == 9
   end
 
   private
