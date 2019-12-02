@@ -52,6 +52,10 @@ class EvaluatedHand
     "Straight" if i == 4
   end
 
+  def straight_flush?
+    "Straight Flush" if straight? == "Straight" && flush? == "Flush"
+  end
+
   private
 
   def get_face_val
