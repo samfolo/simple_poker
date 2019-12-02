@@ -56,6 +56,10 @@ class EvaluatedHand
     "Straight Flush" if straight? == "Straight" && flush? == "Flush"
   end
 
+  def royal_flush?
+    "Royal Flush"
+  end
+
   private
 
   def get_face_val

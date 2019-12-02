@@ -127,4 +127,11 @@ describe EvaluatedHand do
       expect(hand.straight_flush?).to eq nil
     end
   end
+
+  describe "#royal_flush" do
+    it "returns 'Royal Flush' when passed '10', 'Jack', 'Queen', 'King' and 'Ace' all of the same suit('C')" do
+      hand = EvaluatedHand.new(["10 of C", "Jack of C", "Queen of C", "King of C", "Ace of C"])
+      expect(hand.royal_flush?).to eq "Royal Flush"
+    end
+  end
 end
