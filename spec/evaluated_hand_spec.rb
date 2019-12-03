@@ -19,9 +19,9 @@ describe EvaluatedHand do
       expect(hand.three_of_a_kind?).to eq "3 of a Kind"
     end
 
-    it "should return 'nil' when a hand with no matching face values is passed" do
+    it "should return 'Highest Card' when a hand with no matching face values is passed" do
       hand = EvaluatedHand.new(["10 of D", "9 of H", "2 of S", "King of D", "7 of C"])
-      expect(hand.three_of_a_kind?).to eq nil
+      expect(hand.three_of_a_kind?).to eq "Highest Card"
     end
   end
 
@@ -31,9 +31,9 @@ describe EvaluatedHand do
       expect(hand.four_of_a_kind?).to eq "4 of a Kind"
     end
 
-    it "should return 'nil' when a hand with no matching face values is passed" do
+    it "should return 'Highest Card' when a hand with no matching face values is passed" do
       hand = EvaluatedHand.new(["10 of D", "9 of H", "3 of S", "Queen of D", "5 of C"])
-      expect(hand.four_of_a_kind?).to eq nil
+      expect(hand.four_of_a_kind?).to eq "Highest Card"
     end
   end
 
@@ -43,9 +43,9 @@ describe EvaluatedHand do
       expect(hand.full_house?).to eq "Full House"
     end
 
-    it "should return 'nil' when a hand with no matching face values is passed" do
+    it "should return 'Highest Card' when a hand with no matching face values is passed" do
       hand = EvaluatedHand.new(["10 of D", "9 of H", "3 of S", "Queen of D", "5 of C"])
-      expect(hand.full_house?).to eq nil
+      expect(hand.full_house?).to eq "Highest Card"
     end
   end
 
@@ -55,9 +55,9 @@ describe EvaluatedHand do
       expect(hand.two_pair?).to eq "Two Pair"
     end
 
-    it "should return 'nil' when a hand with no matching face values is passed" do
+    it "should return 'Highest Card' when a hand with no matching face values is passed" do
       hand = EvaluatedHand.new(["10 of D", "9 of H", "3 of S", "Queen of D", "5 of C"])
-      expect(hand.two_pair?).to eq nil
+      expect(hand.two_pair?).to eq "Highest Card"
     end
   end
 
@@ -84,9 +84,9 @@ describe EvaluatedHand do
       end
     end
 
-    it "should return 'nil' when a hand with no matching face values is passed" do
+    it "should return 'Highest Card' when a hand with no matching face values is passed" do
       hand = EvaluatedHand.new(["10 of D", "9 of D", "3 of S", "Queen of D", "5 of D"])
-      expect(hand.flush?).to eq nil
+      expect(hand.flush?).to eq "Highest Card"
     end
   end
 
@@ -103,9 +103,9 @@ describe EvaluatedHand do
       end
     end
 
-    it "should return 'nil' when a hand with no matching face values is passed" do
+    it "should return 'Highest Card' when a hand with no matching face values is passed" do
       hand = EvaluatedHand.new(["10 of D", "9 of D", "3 of S", "Queen of D", "5 of D"])
-      expect(hand.straight?).to eq nil
+      expect(hand.straight?).to eq "Highest Card"
     end
   end
 
@@ -122,9 +122,9 @@ describe EvaluatedHand do
       end
     end
 
-    it "should return 'nil' when a hand with no matching face values is passed" do
+    it "should return 'Highest Card' when a hand with no matching face values is passed" do
       hand = EvaluatedHand.new(["10 of D", "9 of D", "3 of S", "Queen of D", "5 of D"])
-      expect(hand.straight_flush?).to eq nil
+      expect(hand.straight_flush?).to eq "Highest Card"
     end
   end
 
@@ -134,9 +134,9 @@ describe EvaluatedHand do
       expect(hand.royal_flush?).to eq "Royal Flush"
     end
 
-    it "should return 'nil' when a hand with no matching face values is passed" do
+    it "should return 'Highest Card' when a hand with no matching face values is passed" do
       hand = EvaluatedHand.new(["10 of D", "9 of D", "3 of S", "Queen of D", "5 of D"])
-      expect(hand.royal_flush?).to eq nil
+      expect(hand.royal_flush?).to eq "Highest Card"
     end
   end
 end

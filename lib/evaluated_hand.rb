@@ -17,28 +17,14 @@ class EvaluatedHand
     @result.include?("Pair") ? "Pair" : "Highest Card"
   end
 
-  def three_of_a_kind?
-  count_cards("3 of a Kind", 3)
-  @result[0]
-  end
-
-  def four_of_a_kind?
-  count_cards("4 of a Kind", 4)
-  @result[0]
-  end
-
-  def full_house?
-    "Full House" if three_of_a_kind? && pair? == "Pair"
-  end
-
   def two_pair?
     gather_pairs
-    "Two Pair" if @result.count("Pair") == 2
+    @result.count("Pair") == 2 ? "Two Pair" : pair?
   end
 
-  def flush?
-    suit_hand = get_suit_val
-    "Flush" if suit_hand.uniq.length == 1
+  def three_of_a_kind?
+  count_cards("3 of a Kind", 3)
+  @result[0] ? "3 of a Kind" : two_pair?
   end
 
   def straight?
@@ -46,18 +32,32 @@ class EvaluatedHand
     i = 0
     pre_card = ""
     numeric_hand.each { |card|
-      (i += 1 if pre_card == card.to_i - 1)  if pre_card != ""
+      (i += 1 if pre_card == card.to_i - 1) if pre_card != ""
       pre_card = card
     }
-    "Straight" if i == 4
+    i == 4 ? "Straight" : three_of_a_kind?
+  end
+
+  def flush?
+    suit_hand = get_suit_val
+    suit_hand.uniq.length == 1 ? "Flush" : straight?
+  end
+
+  def full_house?
+    three_of_a_kind? && pair? == "Pair" ? "Full House" : flush?
+  end
+
+  def four_of_a_kind?
+    count_cards("4 of a Kind", 4)
+    @result[0] ? "4 of a Kind" : full_house?
   end
 
   def straight_flush?
-    "Straight Flush" if straight? == "Straight" && flush? == "Flush"
+    straight? == "Straight" && flush? == "Flush" ? "Straight Flush" : four_of_a_kind?
   end
 
   def royal_flush?
-    "Royal Flush" if straight_flush? && get_numeric_hand[0] == 9
+    straight_flush? && get_numeric_hand[0] == 9 ? "Royal Flush" : straight_flush?
   end
 
   private
@@ -85,6 +85,7 @@ class EvaluatedHand
   end
 
   def count_cards(result, amount)
+    @result = []
     face_hand = get_face_val
     face_hand.each { |face_card|
       @result << result if face_hand.count(face_card) == amount
@@ -92,6 +93,7 @@ class EvaluatedHand
   end
 
   def gather_pairs
+    @result = []
     face_hand = get_face_val
     face_hand.each { |face_card|
       face_hand.count(face_card) == 2 ? @result << "Pair" : @result << "Highest Card"
